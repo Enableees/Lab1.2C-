@@ -1,18 +1,9 @@
 ﻿namespace Lab1._2
 {
-    internal class Program
+    public class Logic
     {
-        static void Main(string[] args)
+        public static bool CheckOrder(int[] arr)
         {
-            Console.Write("Введите количество элементов: ");
-            int n = int.Parse(Console.ReadLine());
-            int[] arr = new int[n];
-            Console.WriteLine("Введите элементы:");
-            for (int i = 0; i < n; i++)
-            {
-                arr[i] = int.Parse(Console.ReadLine());
-            }
-
             bool S = true;
 
             for (int i = 1; i < arr.Length; i++)
@@ -24,10 +15,37 @@
                 }
             }
 
+            return S;
+        }
+
+        public static string GetResultMessage(bool S)
+        {
             if (S)
-                Console.WriteLine("Последовательность упорядочена по возрастанию");
+                return "Последовательность упорядочена по возрастанию";
             else
-                Console.WriteLine("Последовательность не упорядочена по возрастанию");
+                return "Последовательность не упорядочена по возрастанию";
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Введите количество элементов: ");
+            int n = int.Parse(Console.ReadLine());
+
+            int[] arr = new int[n];
+
+            Console.WriteLine("Введите элементы:");
+            for (int i = 0; i < n; i++)
+            {
+                arr[i] = int.Parse(Console.ReadLine());
+            }
+
+            bool S = Logic.CheckOrder(arr);
+            string resultMessage = Logic.GetResultMessage(S);
+
+            Console.WriteLine(resultMessage);
         }
     }
 }
