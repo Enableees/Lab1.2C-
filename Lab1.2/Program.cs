@@ -1,29 +1,38 @@
-﻿namespace Lab1._2
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab1._2
 {
     public class Logic
     {
-        public static bool CheckOrder(int[] arr)
+        public static string CheckDigitOrder(int number)
         {
-            bool S = true;
+            if (number < 0)
+                number = -number;
 
-            for (int i = 1; i < arr.Length; i++)
+            if (number < 10)
+                return "Последовательность упорядочена по возрастанию";
+
+            int previousDigit = number % 10;
+            number = number / 10;
+
+            while (number > 0)
             {
-                if (arr[i] <= arr[i - 1])
+                int currentDigit = number % 10;
+
+                if (currentDigit >= previousDigit)
                 {
-                    S = false;
-                    break;
+                    return "Последовательность не упорядочена по возрастанию";
                 }
+
+                previousDigit = currentDigit;
+                number = number / 10;
             }
 
-            return S;
-        }
-
-        public static string GetResultMessage(bool S)
-        {
-            if (S)
-                return "Последовательность упорядочена по возрастанию";
-            else
-                return "Последовательность не упорядочена по возрастанию";
+            return "Последовательность упорядочена по возрастанию";
         }
     }
 
@@ -31,21 +40,17 @@
     {
         static void Main(string[] args)
         {
-            Console.Write("Введите количество элементов: ");
-            int n = int.Parse(Console.ReadLine());
+            Console.Write("Введите число: ");
+            string input = Console.ReadLine();
 
-            int[] arr = new int[n];
-
-            Console.WriteLine("Введите элементы:");
-            for (int i = 0; i < n; i++)
+            if (!int.TryParse(input, out int number))
             {
-                arr[i] = int.Parse(Console.ReadLine());
+                Console.WriteLine("Ошибка: введите целое число");
+                return;
             }
 
-            bool S = Logic.CheckOrder(arr);
-            string resultMessage = Logic.GetResultMessage(S);
-
-            Console.WriteLine(resultMessage);
+            string result = Logic.CheckDigitOrder(number);
+            Console.WriteLine(result);
         }
     }
 }

@@ -7,75 +7,100 @@ namespace Lab1._2.Tests
     public class LogicTests
     {
         [TestMethod()]
-        public void Check1()
+        public void CheckDigitOrder_IncreasingDigits()
         {
-            int[] arr = { 1, 4, 7, 8 };
-            bool result = Logic.CheckOrder(arr);
-            Assert.AreEqual(true, result);
+            int number = 1478;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность упорядочена по возрастанию", result);
         }
 
         [TestMethod()]
-        public void Check2()
+        public void CheckDigitOrder_NotIncreasing()
         {
-            int[] arr = { 1, 7, 8, 2 };
-            bool result = Logic.CheckOrder(arr);
-            Assert.AreEqual(false, result);
+            int number = 1782;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность не упорядочена по возрастанию", result);
         }
 
         [TestMethod()]
-        public void Check3()
+        public void CheckDigitOrder_RepeatingDigits()
         {
-            int[] arr = { 1, 6, 6, 8 };
-            bool result = Logic.CheckOrder(arr);
-            Assert.AreEqual(false, result);
+            int number = 1668;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность не упорядочена по возрастанию", result);
         }
 
         [TestMethod()]
-        public void Check4()
+        public void CheckDigitOrder_SingleDigit()
         {
-            int[] arr = { 5 };
-            bool result = Logic.CheckOrder(arr);
-            Assert.AreEqual(true, result);
+            int number = 5;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность упорядочена по возрастанию", result);
         }
 
         [TestMethod()]
-        public void Check5()
+        public void CheckDigitOrder_TwoDigitsIncreasing()
         {
-            int[] arr = { 3, 7 };
-            bool result = Logic.CheckOrder(arr);
-            Assert.AreEqual(true, result);
+            int number = 37;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность упорядочена по возрастанию", result);
         }
 
         [TestMethod()]
-        public void Check6()
+        public void CheckDigitOrder_TwoDigitsNotIncreasing()
         {
-            int[] arr = { 8, 2 };
-            bool result = Logic.CheckOrder(arr);
-            Assert.AreEqual(false, result);
+            int number = 82;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность не упорядочена по возрастанию", result);
         }
 
         [TestMethod()]
-        public void Check7()
+        public void CheckDigitOrder_NegativeIncreasing()
         {
-            int[] arr = { -1, 2 };
-            bool result = Logic.CheckOrder(arr);
-            Assert.AreEqual(true, result);
+            int number = -123;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность упорядочена по возрастанию", result);
         }
 
         [TestMethod()]
-        public void Check8()
+        public void CheckDigitOrder_NegativeNotIncreasing()
         {
-            int[] arr = { 1, -2 };
-            bool result = Logic.CheckOrder(arr);
-            Assert.AreEqual(false, result);
+            int number = -132;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность не упорядочена по возрастанию", result);
         }
 
         [TestMethod()]
-        public void Check9()
+        public void CheckDigitOrder_Zero()
         {
-            int[] arr = { -1 };
-            bool result = Logic.CheckOrder(arr);
-            Assert.AreEqual(true, result);
+            int number = 0;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность упорядочена по возрастанию", result);
+        }
+
+        [TestMethod()]
+        public void CheckDigitOrder_AllDigitsSame()
+        {
+            int number = 111;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность не упорядочена по возрастанию", result);
+        }
+
+
+        [TestMethod()]
+        public void CheckDigitOrder_WithZeroInMiddle()
+        {
+            int number = 1023;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность не упорядочена по возрастанию", result);
+        }
+
+        [TestMethod()]
+        public void CheckDigitOrder_WithZeroAtEnd()
+        {
+            int number = 1230;
+            string result = Logic.CheckDigitOrder(number);
+            Assert.AreEqual("Последовательность не упорядочена по возрастанию", result);
         }
     }
 }
